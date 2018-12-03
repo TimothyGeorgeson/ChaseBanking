@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ChaseBanking</string>
+    <string name="equal_housing_lender">⌂ Equal Housing Lender</string>
+    <string name="deposit_products">Deposit products by JPMorgan Chase Bank, Member FDIC</string>
+    <string name="credit_cards_issued">Credit cards are issued by Chase Bank USA</string>
+    <string name="copyright_chase"><![CDATA[© 2018 JPMorgan Chase & Co.]]></string>
+
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+</resources>
