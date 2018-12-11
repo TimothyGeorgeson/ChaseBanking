@@ -1,13 +1,14 @@
-package com.example.consultants.chasebanking;
+package com.example.consultants.chasebanking.ui.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.example.consultants.chasebanking.R;
 
 
 /**
@@ -36,16 +37,16 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param email Parameter for email.
+     * @param password Parameter for password.
      * @return A new instance of fragment SignInFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static SignInFragment newInstance(String param1, String param2) {
+
+    public static SignInFragment newInstance(String email, String password) {
         SignInFragment fragment = new SignInFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_EMAIL, param1);
-        args.putString(ARG_PASS, param2);
+        args.putString(ARG_EMAIL, email);
+        args.putString(ARG_PASS, password);
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,9 +68,9 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onSignInPressed(String login) {
+    public void onSignInPressed(String email, String password) {
         if (mListener != null) {
-            mListener.onSignIn("");
+            mListener.onSignIn(email, password);
         }
     }
 
@@ -96,8 +97,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.btnSignIn:
+                EditText etEmail = v.findViewById(R.id.etEmail);
+                EditText etPassword = v.findViewById(R.id.etPassword);
 
-                onSignInPressed("Some Data");
+                onSignInPressed(etEmail.getText().toString(), etPassword.getText().toString());
 
                 //show toast
                 mListener.showToast("Login Success");
@@ -117,7 +120,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
      */
     public interface OnFragmentInteractionListener {
 
-        void onSignIn(String login);
+        void onSignIn(String email, String password);
         void showToast(String data);
     }
 }
