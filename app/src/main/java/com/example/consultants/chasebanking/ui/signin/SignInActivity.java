@@ -3,6 +3,7 @@ package com.example.consultants.chasebanking.ui.signin;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.consultants.chasebanking.util.CompleteListener;
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity implements SignInFragment.OnFragmentInteractionListener,
         UserAuthenticator.Callback {
+    public static final String TAG = SignInActivity.class.getSimpleName() + "_TAG";
 
     private UserAuthenticator userAuthenticator;
 
@@ -29,14 +31,10 @@ public class SignInActivity extends AppCompatActivity implements SignInFragment.
     }
 
     @Override
-    public void onSignIn(String email, String password) {
+    public void fromFragmentSignIn(String email, String password) {
         userAuthenticator.signIn(email, password);
     }
 
-    @Override
-    public void showToast(String data) {
-        Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
-    }
 
     private void startPeopleActivity() {
 //        Intent intent = new Intent(getApplicationContext(), PeopleActivity.class);
@@ -53,4 +51,5 @@ public class SignInActivity extends AppCompatActivity implements SignInFragment.
     public void onUserInvalidated() {
         Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
     }
+
 }

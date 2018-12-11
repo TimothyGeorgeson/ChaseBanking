@@ -67,13 +67,13 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onSignInPressed(String email, String password) {
         if (mListener != null) {
-            mListener.onSignIn(email, password);
+            mListener.fromFragmentSignIn(email, password);
         }
     }
 
+    //attaching fragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -85,15 +85,16 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    //detaching fragment
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
+    //handles clicks within the fragment
     @Override
     public void onClick(View v) {
-
         switch (v.getId())
         {
             case R.id.btnSignIn:
@@ -102,25 +103,13 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
 
                 onSignInPressed(etEmail.getText().toString(), etPassword.getText().toString());
 
-                //show toast
-                mListener.showToast("Login Success");
                 break;
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    //interface to be implemented by activities containing fragment
     public interface OnFragmentInteractionListener {
 
-        void onSignIn(String email, String password);
-        void showToast(String data);
+        void fromFragmentSignIn(String email, String password);
     }
 }
